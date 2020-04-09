@@ -3,6 +3,10 @@
            https://api.github.com/users/<your name>
 */
 
+axios.get(`https://api.github.com/users/galfarotolon`)
+
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -45,6 +49,64 @@ const followersArray = [];
 </div>
 
 */
+
+const cards = document.querySelector(".cards")
+
+function userCard({
+  userInfo
+}) {
+
+  //instantiate elements
+  const card = document.createElement("div")
+  const userImg = document.createElement("img")
+  const cardInfo = document.createElement("div")
+  const name = document.createElement("h3")
+  const userName = document.createElement("p")
+  const userLocation = document.createElement("p")
+  const profile = document.createElement("p")
+  const address = document.createElement("a")
+  const followers = document.createElement("p")
+  const following = document.createElement("p")
+  const bio = document.createElement("p")
+
+  //nest them
+
+  card.appendChild(userImg)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(userName)
+  cardInfo.appendChild(userLocation)
+  cardInfo.appendChild(profile)
+  profile.appendChild(address)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(following)
+  cardInfo.appendChild(bio)
+
+  //add class names
+
+  card.classList.add("card")
+  cardInfo.classList.add("card-info")
+  name.classList.add("name")
+  userName.classList.add("username")
+
+
+  // set text content using argument
+  userImg.src = userInfo.avatar_url
+  name.textContent = userInfo.name
+  userName.textContent = userInfo.login
+  userLocation.textContent = userInfo.location
+  address.textContent = userInfo.html_url
+  followers.textContent = userInfo.followers
+  following.textContent = userInfo.following
+  bio.textContent = userInfo.bio
+
+
+
+
+  return card
+}
+
+
 
 /* List of LS Instructors Github username's: 
   tetondan
