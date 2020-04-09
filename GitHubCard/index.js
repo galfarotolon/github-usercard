@@ -1,9 +1,11 @@
+console.log(axios)
+
 /* Step 1: using axios, send a GET request to the following URL 
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
 
-axios.get(`https://api.github.com/users/galfarotolon`)
+//axios.get(`https://api.github.com/users/galfarotolon`)
 
 
 
@@ -18,6 +20,29 @@ axios.get(`https://api.github.com/users/galfarotolon`)
            create a new component and add it to the DOM as a child of .cards
 */
 
+
+function getUserCards(userName) {
+
+  axios.get(`https://api.github.com/users/${userName}`)
+    .then(
+      response => {
+        console.log(response)
+
+        cards.appendChild(userCard(response.data))
+
+
+      }
+    )
+    .catch(
+      error => {
+        console.log("not working")
+
+      }
+    )
+}
+getUserCards("galfarotolon");
+
+
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -28,7 +53,33 @@ axios.get(`https://api.github.com/users/galfarotolon`)
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "NomadDaniel", "nathannnguyen"];
+
+
+
+
+for (let i = 0; i < followersArray.length; i++) {
+  axios.get(`https://api.github.com/users/${followersArray[i]}`)
+    .then(
+      response => {
+        console.log(response)
+
+        card.appendChild(getUserCards(response.data))
+
+
+      }
+    )
+    .catch(
+      error => {
+        console.log("not working")
+
+      }
+    )
+  getUserCards(followersArray[i]);
+}
+
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -52,9 +103,9 @@ const followersArray = [];
 
 const cards = document.querySelector(".cards")
 
-function userCard({
+function userCard(
   userInfo
-}) {
+) {
 
   //instantiate elements
   const card = document.createElement("div")
@@ -93,11 +144,11 @@ function userCard({
   // set text content using argument
   userImg.src = userInfo.avatar_url
   name.textContent = userInfo.name
-  userName.textContent = userInfo.login
+  userName.textContent = `username: ${userInfo.login}`
   userLocation.textContent = userInfo.location
-  address.textContent = userInfo.html_url
-  followers.textContent = userInfo.followers
-  following.textContent = userInfo.following
+  address.textContent = `Github page: ${userInfo.html_url}`
+  followers.textContent = `Followers: ${userInfo.followers}`
+  following.textContent = `Following: ${userInfo.following}`
   bio.textContent = userInfo.bio
 
 
@@ -105,6 +156,7 @@ function userCard({
 
   return card
 }
+
 
 
 
