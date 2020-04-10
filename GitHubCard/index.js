@@ -30,13 +30,11 @@ function getUserCards(userName) {
 
         cards.appendChild(userCard(response.data))
 
-
       }
     )
     .catch(
       error => {
         console.log("not working")
-
       }
     )
 }
@@ -53,7 +51,9 @@ getUserCards("galfarotolon");
           user, and adding that card to the DOM.
 */
 
-const followersArray = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "NomadDaniel", "nathannnguyen"];
+const followersArray = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "NomadDaniel",
+  "nathannnguyen", "kristiancorrea", "sonethaya"
+];
 
 
 
