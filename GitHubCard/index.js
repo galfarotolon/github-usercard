@@ -52,7 +52,7 @@ getUserCards("galfarotolon");
 */
 
 const followersArray = ["tetondan", "dustinmyers", "justsml", "luishrd", "bigknell", "NomadDaniel",
-  "nathannnguyen", "kristiancorrea", "sonethaya"
+  "nathannnguyen", "kristiancorrea", "sonethaya", "tomfox1"
 ];
 
 
